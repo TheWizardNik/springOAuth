@@ -48,6 +48,12 @@ public class SocialConfig implements SocialConfigurer {
             this.autoSignUp = false;
         }
 
+        // Twitter
+        TwitterConnectionFactory tfactory = new TwitterConnectionFactory(
+                env.getProperty("twitter.consumer.key"),
+                env.getProperty("twitter.consumer.secret"));
+     //TODO   tfactory.setScope(env.getProperty("twitter.scope"));
+        cfConfig.addConnectionFactory(tfactory);
 
         // Facebook
         FacebookConnectionFactory ffactory = new FacebookConnectionFactory(
@@ -56,7 +62,12 @@ public class SocialConfig implements SocialConfigurer {
         ffactory.setScope(env.getProperty("facebook.scope"));
         cfConfig.addConnectionFactory(ffactory);
 
-    
+        // Linkedin
+        LinkedInConnectionFactory lfactory = new LinkedInConnectionFactory(
+                env.getProperty("linkedin.consumer.key"),
+                env.getProperty("linkedin.consumer.secret"));
+        lfactory.setScope(env.getProperty("linkedin.scope"));
+        cfConfig.addConnectionFactory(lfactory);
 
         // Google
         GoogleConnectionFactory gfactory = new GoogleConnectionFactory(
